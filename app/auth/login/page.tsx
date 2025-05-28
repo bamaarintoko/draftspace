@@ -41,10 +41,6 @@ export default function PageLogin() {
         console.log("data : ", data)
     }, [data])
 
-    useEffect(() => {
-        console.log("error : ", getErrorMessage(error.response.data.error))
-    }, [error])
-
     const onSubmit = (data: LoginFormData) => {
         console.log("Login with", data);
         // send({
