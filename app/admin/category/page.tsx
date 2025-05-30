@@ -55,7 +55,7 @@ export default function PageCategory() {
         isLoading: deleteLoading,
         isSuccess: deleteCatSuccess
     } = useDeleteRequest();
-    const { data, isLoading, refetch } = useAxiosQuery('categories', params); // ambil semua data category
+    const { data, isLoading, refetch,error } = useAxiosQuery('categories', params); // ambil semua data category
 
     const { send, isLoading: addCategoryLoading, data: addCategoryData, isSuccess } = useRequest("categories", {
         method: "post",
@@ -71,8 +71,8 @@ export default function PageCategory() {
     const totalCategories = data?.totalData || 0
 
     useEffect(() => {
-        console.log("data : ", categoryObj)
-    }, [categoryObj])
+        console.log("error : ", error)
+    }, [error])
 
     useEffect(() => {
         const query = new URLSearchParams();
@@ -147,6 +147,13 @@ export default function PageCategory() {
                     </button>
                 </div>
             </div>
+            {
+                error
+                &&
+                <div className="p-6">
+                    <Alert type="danger" title="Info :" message={"Pencarian Category gagal"} />
+                </div>
+            }
             {
                 putCategoryIsSuccess
                 &&
