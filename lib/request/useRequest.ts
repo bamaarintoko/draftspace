@@ -21,7 +21,7 @@ export function useRequest<T = any>(
 	const [data, setData] = useState<T | null>(null);
 	const [error, setError] = useState<any>(null);
 	const [isLoading, setIsLoading] = useState(autoFetch);
-
+	const [isSuccess, setIsSuccess] = useState(false); // ✅ new state
 	const send = async (overrideBody?: any) => {
 		setIsLoading(true);
 		const token = Cookies.get("token");
@@ -39,6 +39,7 @@ export function useRequest<T = any>(
 
 			setData(response.data);
 			setError(null);
+			setIsSuccess(true)
 			return response.data;
 		} catch (err: any) {
 			setError(err);
@@ -54,5 +55,5 @@ export function useRequest<T = any>(
 		}
 	}, [endpoint]);
 
-	return { data, error, isLoading, send };
+	return { data, error, isLoading, send, isSuccess };
 }

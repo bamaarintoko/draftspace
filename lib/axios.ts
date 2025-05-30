@@ -9,15 +9,15 @@ const api = axios.create({
 });
 
 // Jika kamu simpan token di localStorage
-api.interceptors.request.use((config) => {
-    if (typeof window !== "undefined") {
-        const token = localStorage.getItem("token");
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-    }
+// api.interceptors.request.use((config) => {
+//     if (typeof window !== "undefined") {
+//         const token = localStorage.getItem("token");
+//         if (token) {
+//             config.headers.Authorization = `Bearer ${token}`;
+//         }
+//     }
 
-    return config;
-});
+//     return config;
+// });
 
 export default api;

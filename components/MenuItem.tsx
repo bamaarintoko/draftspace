@@ -3,9 +3,9 @@ import { usePathname } from "next/navigation";
 
 export default function MenuItem({ icon, label, href }: { icon: React.ReactNode; label: string; href: string }) {
     const pathname = usePathname();
-
-    // Cek apakah path sekarang cocok dengan href nav (exact atau startsWith)
-    const isActive = pathname === href;
+    const segment = pathname.split("/")[2]; // Ambil segmen kedua setelah /admin
+    const base = href.split("/")[2];        // Ambil segmen kedua dari href
+    const isActive = segment === base;
     return (
         <Link href={href}>
             <div
